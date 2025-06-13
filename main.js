@@ -22,14 +22,7 @@ const tempoObjetivo4 = new Date("2027-12-20T00:00:00");
 
 const tempos = [tempoObjetivo1, tempoObjetivo2, tempoObjetivo3, tempoObjetivo4];
 
-function atualizaCronometro(){
-  for (let i=0; i <contadores.length;i++){
-  contadores[i].textContent = calculaTempo(tempos[i]);
-  }
-}
-
-atualizaCronometro();
-setInterval()
+ 
 
 function calculaTempo(tempoObjetivo) {
     let tempoAtual = new Date();
@@ -38,10 +31,22 @@ function calculaTempo(tempoObjetivo) {
     let minutos = Math.floor(segundos /60);
     let horas = Math.floor(minutos / 60);
     let dias = Math.floor(horas / 24);
-
-    segundos %= 60;
+     segundos %= 60;
     minutos %= 60;
     horas %=24;
 
-    return dias + " dias " + horas + " horas " + minutos + " minutos " + segundos + " segundos ";
+return dias + " dias " + horas + " horas " + minutos + " minutos " + segundos + " segundos ";
 }
+
+function atualizaCronometro(){
+  for (let i=0; i <contadores.length;i++){
+  contadores[i].textContent = calculaTempo(tempos[i]);
+  }
+}
+
+function comecaCronometro(){
+atualizaCronometro();
+setInterval(atualizaCronometro,1000);
+}
+
+comecaCronometro();
